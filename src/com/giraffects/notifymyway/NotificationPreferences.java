@@ -9,6 +9,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.giraffects.notifymyway.ColorPickerDialog.OnColorChangedListener;
 
@@ -66,6 +67,14 @@ public class NotificationPreferences extends PreferenceActivity implements
 				PreferenceManager.getDefaultSharedPreferences(this).edit()
 						.putString(VIBRATION_PATTERN_PREFERENCE, pattern)
 						.commit();
+				Toast toast = Toast
+				.makeText(
+						this,
+						"Vibration Pattern changed, now testing it for you",
+						Toast.LENGTH_SHORT);
+				SMSNotifierAction action = new SMSNotifierAction(this);
+				action.notify_user();
+		toast.show();
 			}
 		default:
 			break;

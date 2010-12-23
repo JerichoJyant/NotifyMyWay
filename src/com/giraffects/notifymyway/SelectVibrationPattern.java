@@ -52,6 +52,14 @@ public class SelectVibrationPattern extends Activity implements
 				showDialog(DIALOG_ADD_VP);
 			}
 		});
+		Button cancel_button = (Button) findViewById(R.id.cancel_vibration_pattern_button);
+		// Register the onClick listener with the implementation above
+		cancel_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				setResult(RESULT_CANCELED);
+				finish();
+			}
+		});
 
 	}
 
@@ -83,10 +91,12 @@ public class SelectVibrationPattern extends Activity implements
 
 	}
 
-	private void onChangeVibrationPatterns() {
+	void onChangeVibrationPatterns() {
+		DatabaseManager db_manager = new DatabaseManager(this).open();
 		ListView vibration_patterns_list = (ListView) findViewById(R.id.vibration_patterns_list);
-		((CursorAdapter) vibration_patterns_list.getAdapter())
-				.notifyDataSetChanged();
+		((SimpleCursorAdapter)vibration_patterns_list.getAdapter()).changeCursor(db_manager.fetchAllVibrationPatterns());
+		db_manager.close();
+		//((CursorAdapter) vibration_patterns_list.getAdapter()).notifyDataSetChanged();
 	}
 
 	public void onItemClick(AdapterView<?> parent, View view, int position,

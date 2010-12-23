@@ -8,14 +8,41 @@
   android:layout_height="wrap_content"
   android:layout_alignParentTop="true"
   android:id="@+id/vibration_patterns_list"
+  android:paddingBottom="70dp"
   />
-  <Button
+  <LinearLayout
+  android:orientation="vertical"
+  android:layout_height="wrap_content"
+  android:layout_width="fill_parent"
   android:layout_alignParentLeft="true"
   android:layout_alignParentBottom="true"
-  
-  android:id="@+id/add_vibration_pattern_button"
-  android:text="Add Pattern"
-  android:layout_width="fill_parent"
-  android:layout_height="45dp"
-  />
+  android:id="@+id/linear_layout_bottom_group"
+  android:background="#000000"
+  >
+	  <LinearLayout
+	  android:orientation="horizontal"
+	  android:layout_height="wrap_content"
+	  android:layout_width="fill_parent"
+	  android:id="@+id/linear_layout_button_group"
+	  >
+		  <Button	  
+		  android:id="@+id/add_vibration_pattern_button"
+		  android:text="Add Pattern"
+		  android:layout_width="150dp"
+		  android:layout_height="45dp"
+		  />
+		  <Button
+		  android:id="@+id/cancel_vibration_pattern_button"
+		  android:text="Cancel"
+		  android:layout_width="150dp"
+		  android:layout_height="45dp"
+		  />
+	  </LinearLayout>
+	  <TextView
+	  android:text="Press and hold to edit a vibration pattern"
+	  android:textSize="12dp"
+	  android:layout_width="fill_parent"
+	  android:layout_height="wrap_content"
+	  />
+  </LinearLayout>
 </RelativeLayout>

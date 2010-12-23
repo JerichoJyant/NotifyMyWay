@@ -35,14 +35,11 @@ class SMSNotifierAction {
 			if (sp.getBoolean("vibration_on_preference", true)) {
 				// Choose which vibration pattern string to load
 				String str_vibration_pattern = "";
-				if (sp.getBoolean("use_builtin_pattern_preference", true)) {
-					str_vibration_pattern = sp.getString(
-							"vibration_pattern_builtin", "{0,100}");
-				} else if (sp
-						.getBoolean("use_custom_pattern_preference", false)) {
-					str_vibration_pattern = sp.getString(
-							"vibration_pattern_custom", "{0,100}");
-				}
+
+				str_vibration_pattern = sp.getString(
+						NotificationPreferences.VIBRATION_PATTERN_PREFERENCE,
+						"0,500");
+
 				// Create array
 				String[] str_vibrate_array = str_vibration_pattern.split(",");
 				long[] long_vibrate_array = new long[str_vibrate_array.length];

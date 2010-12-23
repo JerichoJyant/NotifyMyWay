@@ -1,7 +1,6 @@
 package com.giraffects.notifymyway;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
@@ -16,10 +15,10 @@ public class EditVibrationPatternDialog extends Dialog implements
 	public static final int TYPE_EDIT = 2;
 	private int type;
 	private final String TAG = "NotifyMyWay";
-	private Context context;
+	private SelectVibrationPattern context; //Effectively a context, however additional methods needed
 	private long id;
 
-	public EditVibrationPatternDialog(Context context, int type) {
+	public EditVibrationPatternDialog(SelectVibrationPattern context, int type) {
 		// For adding
 		super(context);
 		this.type = type;
@@ -37,7 +36,7 @@ public class EditVibrationPatternDialog extends Dialog implements
 		cancel_button.setOnClickListener(this);
 	}
 
-	public EditVibrationPatternDialog(Context context, int type, long id) {
+	public EditVibrationPatternDialog(SelectVibrationPattern context, int type, long id) {
 		// Editing
 		super(context);
 		this.type = type;
@@ -81,6 +80,17 @@ public class EditVibrationPatternDialog extends Dialog implements
 				toast.show();
 				return;
 			}
+			if (vp_pattern == "") {
+				// Pattern is blank
+				// Notify user and cancel operation
+				Toast toast = Toast
+						.makeText(
+								context,
+								"The the pattern can not be blank, please try again.",
+								Toast.LENGTH_SHORT);
+				toast.show();
+				return;
+			}
 			DatabaseManager db_manager = new DatabaseManager(context).open();
 			if (type == TYPE_ADD) {
 
@@ -101,6 +111,7 @@ public class EditVibrationPatternDialog extends Dialog implements
 				} else {
 					Log.d(TAG, "Created database row id: " + result);
 				}
+				context.onChangeVibrationPatterns();
 				db_manager.close();
 				dismiss();
 			} else if (type == TYPE_EDIT) {
@@ -108,6 +119,8 @@ public class EditVibrationPatternDialog extends Dialog implements
 					Toast toast = Toast.makeText(context,
 							"Edited vibration pattern", Toast.LENGTH_SHORT);
 					toast.show();
+					context.onChangeVibrationPatterns();
+					db_manager.close();
 				} else {
 					Log.e(TAG, "Could not edit vibration pattern");
 					Toast toast = Toast
