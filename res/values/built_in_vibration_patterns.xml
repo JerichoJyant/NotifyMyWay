@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="vibration_pattern_names">
+<item>Long Buzz (1 sec)</item>
+<item>Buzz (1/2 sec)</item>
+<item>Short Buzz (1/4 sec)</item>
+<item>Tap Tap Tap</item>
+<item>Quick Tap Tap Tap</item>
+<item>Angry Bumble Bee</item>
+<item>Bumble Bee</item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+</string-array>
+
+
+<string-array name="vibration_pattern_data"
+><item>0,1000</item>
+<item>0,500</item>
+<item>0,250</item>
+<item>0,250,50,100,50,250,50,100,50,250,50,100,50</item>
+<item>0,125,25,50,25,125,25,50,25,125,25,50,25</item>
+<item>0,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,50,1,1,1,1,1,1,1,100,100,600,1000</item>
+<item>0,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,50,1,1,1,1,1,1,1,100,100</item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+<item></item>
+</string-array>
+</resources>

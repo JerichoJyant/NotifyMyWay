@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" android:title="NotifyMyWay Preferences" android:key="preferences">
+<PreferenceCategory android:title="Vibration" android:key="vibration_preference_category">
+<CheckBoxPreference android:summaryOff="Device does not vibrate" android:key="vibration_on_preference" android:summaryOn="Device vibrates" android:title="Vibrate on SMS" android:defaultValue="true"></CheckBoxPreference>
+
+
+<PreferenceScreen android:title="Vibration Pattern..." android:summary="Configure vibration pattern" android:key="vibration_pattern_screen"><CheckBoxPreference android:summary="Choose from the patterns below" android:title="Use a built in pattern" android:key="use_builtin_pattern_preference"></CheckBoxPreference><ListPreference android:entryValues="@array/vibration_pattern_data" android:key="vibration_pattern_builtin" android:entries="@array/vibration_pattern_names" android:title="Built In Vibration Pattern" android:dependency="use_builtin_pattern_preference"></ListPreference><CheckBoxPreference android:title="Use Custom Vibration Pattern" android:key="use_custom_pattern_preference"></CheckBoxPreference><EditTextPreference android:title="Custom Vibration Pattern" android:key="vibration_pattern_custom" android:dependency="use_custom_pattern_preference"></EditTextPreference>
+
+
+</PreferenceScreen>
+</PreferenceCategory>
+<PreferenceCategory android:title="LED" android:key="led_preference_category"><CheckBoxPreference android:summaryOff="LED will not flash" android:key="flash_led_preference" android:summaryOn="LED will flash" android:title="Flash LED" android:defaultValue="true"></CheckBoxPreference>
+<Preference android:title="Color of LED" android:key="led_color" android:defaultValue="0xff00ffff"></Preference>
+<EditTextPreference android:title="LED On Time" android:key="flash_on_duration_preference" android:summary="How long should the LED be on?" android:defaultValue="500"></EditTextPreference><EditTextPreference android:title="LED Off Time" android:key="flash_off_duration_preference" android:summary="How long should the LED be off?" android:defaultValue="500"></EditTextPreference>
+
+</PreferenceCategory>
+
+<PreferenceCategory android:title="Test" android:key="test_category"><Preference android:title="Test Notification" android:key="do_notification_test"></Preference></PreferenceCategory>
+
+</PreferenceScreen>
