@@ -23,15 +23,7 @@ public class MainMenu extends Activity implements OnClickListener {
 		// Register the onClick listener with the implementation above
 		launchPreferences.setOnClickListener(this);
 
-		Button fixVibration = (Button) findViewById(R.id.vibration_button);
-		// Register the onClick listener with the implementation above
-		fixVibration.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// Todo: discriminate between events
-				// startActivity(new Intent(this,
-				// NotificationPreferences.class));
-			}
-		});
+		
 	}
 
 	public void onClick(View v) {

@@ -5,7 +5,7 @@
   android:layout_height="fill_parent">
   <ListView
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
+  android:layout_height="wrap_content"
   android:layout_alignParentTop="true"
   android:id="@+id/vibration_patterns_list"
   />
@@ -15,5 +15,7 @@
   android:layout_alignParentBottom="true"
   android:layout_below="@id/vibration_patterns_list"
   android:id="@+id/add_vibration_pattern_button"
+  android:text="Add Pattern"
+  android:layout_width="fill_parent"
   />
 </RelativeLayout>
