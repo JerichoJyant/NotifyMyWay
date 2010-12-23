@@ -9,6 +9,7 @@
 
 
 </PreferenceScreen>
+<Preference android:key="select_vibration_pattern" android:summary="Select, edit, or create vibration patterns" android:title="Select Vibration Pattern..."></Preference>
 </PreferenceCategory>
 <PreferenceCategory android:title="LED" android:key="led_preference_category"><CheckBoxPreference android:summaryOff="LED will not flash" android:key="flash_led_preference" android:summaryOn="LED will flash" android:title="Flash LED" android:defaultValue="true"></CheckBoxPreference>
 <Preference android:title="Color of LED" android:key="led_color" android:defaultValue="0xff00ffff"></Preference>

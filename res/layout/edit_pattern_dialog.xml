@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  >
+  <TextView
+  android:text="@string/edit_pattern_dialog_name"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:capitalize="words"
+  />
+  <EditText
+  android:id="@+id/name"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  />
+  <TextView
+  android:text="@string/edit_pattern_dialog_pattern"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  />
+  <EditText
+  android:id="@+id/pattern"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  />
+  <LinearLayout
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  >
+  	<Button
+  		android:id="@+id/save_pattern_button"
+  		android:text="@string/save_pattern_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  	/>
+  	<Button
+  		android:id="@+id/cancel_pattern_button"
+  		android:text="@string/cancel_pattern_button"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  	/>
+  </LinearLayout>
+</LinearLayout>

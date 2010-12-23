@@ -1,6 +1,7 @@
 package com.giraffects.notifymyway;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -14,21 +15,23 @@ public class DatabaseManager {
 	private DatabaseHelper database_helper;
 	private SQLiteDatabase database;
 
+	// Vibration Patterns Table
+	private static final String VP_TABLE_NAME = "vibration_patterns";
+	public static final String VP_KEY_NAME = "name";
+	public static final String VP_KEY_PATTERN = "pattern";
+	public static final String VP_KEY_ROWID = "_id";
+	
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		// Upgrade when changing schema
-		private static final int DATABASE_VERSION = 1;
+		private static final int DATABASE_VERSION = 2;
 		
 		// Database name
 		private static final String DATABASE_NAME = "nmw_data";
 		
-		// Vibration Patterns Table
-		private static final String VP_TABLE_NAME = "vibration_patterns";
-		public static final String VP_KEY_NAME = "name";
-		public static final String VP_KEY_PATTERN = "body";
-		public static final String VP_KEY_ROWID = "_id";
+		
 		private static final String VP_TABLE_CREATE = "CREATE TABLE "
 				+ VP_TABLE_NAME + " (" + VP_KEY_ROWID
-				+ " integer primary key autoincrement" + VP_KEY_NAME
+				+ " integer primary key autoincrement, " + VP_KEY_NAME
 				+ " TEXT, " + VP_KEY_PATTERN + " TEXT" + ");";
 
 		private static final String DATABASE_CREATE = VP_TABLE_CREATE; // TODO:
@@ -43,8 +46,9 @@ public class DatabaseManager {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			// Run sql to create database
+			Log.d(TAG, "Creating database");
 			db.execSQL(DATABASE_CREATE);
-			// TODO: Run SQL to pre-populate
+			// TODO: Run SQL to pre-populate table with patterns
 		}
 
 		@Override
@@ -87,9 +91,9 @@ public class DatabaseManager {
 	 * @return Cursor over all notes
 	 */
 	public Cursor fetchAllVibrationPatterns() {
-		return database.query(DatabaseHelper.VP_TABLE_NAME, new String[] {
-				DatabaseHelper.VP_KEY_ROWID, DatabaseHelper.VP_KEY_NAME,
-				DatabaseHelper.VP_KEY_PATTERN }, null, null, null, null, null);
+		return database.query(VP_TABLE_NAME, new String[] {
+				VP_KEY_ROWID, VP_KEY_NAME,
+				VP_KEY_PATTERN }, null, null, null, null, null);
 	}
 
 	/**
@@ -105,9 +109,9 @@ public class DatabaseManager {
 
 		Cursor mCursor =
 
-		database.query(true, DatabaseHelper.VP_TABLE_NAME, new String[] {
-				DatabaseHelper.VP_KEY_ROWID, DatabaseHelper.VP_KEY_NAME,
-				DatabaseHelper.VP_KEY_PATTERN }, DatabaseHelper.VP_KEY_ROWID
+		database.query(true, VP_TABLE_NAME, new String[] {
+				VP_KEY_ROWID, VP_KEY_NAME,
+				VP_KEY_PATTERN }, VP_KEY_ROWID
 				+ "=" + rowId, null, null, null, null, null);
 
 		if (mCursor != null) {
@@ -116,4 +120,12 @@ public class DatabaseManager {
 		return mCursor;
 
 	}
+	
+	public long createVibrationPattern(String name, String pattern) {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(VP_KEY_NAME, name);
+        initialValues.put(VP_KEY_PATTERN, pattern);
+
+        return database.insert(VP_TABLE_NAME, null, initialValues);
+    }
 }

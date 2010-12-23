@@ -6,4 +6,9 @@
 that app and NotifyMyWay. Please disable vibration in your default messaging app.</string>
 <string name="vibration_button">Fix Vibration Overlap</string>
 <string name="edit_preferences">Edit Preferences</string>
+
+<string name="edit_pattern_dialog_name">Pattern Name:</string>
+<string name="edit_pattern_dialog_pattern">Pattern: (See Help)</string>
+<string name="save_pattern_button">Save</string>
+<string name="cancel_pattern_button">Cancel</string>
 </resources>
