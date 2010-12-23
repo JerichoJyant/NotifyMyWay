@@ -10,12 +10,12 @@
   android:id="@+id/vibration_patterns_list"
   />
   <Button
-  android:layout_height="wrap_content"
   android:layout_alignParentLeft="true"
   android:layout_alignParentBottom="true"
-  android:layout_below="@id/vibration_patterns_list"
+  
   android:id="@+id/add_vibration_pattern_button"
   android:text="Add Pattern"
   android:layout_width="fill_parent"
+  android:layout_height="45dp"
   />
 </RelativeLayout>

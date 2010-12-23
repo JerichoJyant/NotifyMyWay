@@ -16,8 +16,9 @@ public class NotificationPreferences extends PreferenceActivity implements
 		OnColorChangedListener, OnPreferenceClickListener {
 	private static final String COLOR_PREFERENCE_KEY = "led_color";
 	private static final String TEST_PREFERENCE_KEY = "do_notification_test";
-	private static final String VIBRATION_PATERN_PREFERENCE_KEY = "select_vibration_pattern";
+	private static final String VIBRATION_PATTERN_PREFERENCE_KEY = "select_vibration_pattern";
 	private static final String TAG = "NotifyMyWay";
+	static final String VIBRATION_PATTERN_PREFERENCE = "vibration_pattern";
 	// Constant for startActivityForResult
 	private static final int ACTIVITY_CHOOSE_VP = 1001;
 
@@ -34,6 +35,7 @@ public class NotificationPreferences extends PreferenceActivity implements
 			return true;
 		}
 	}
+
 	class VibrationPatternListener implements OnPreferenceClickListener {
 		Activity activity;
 
@@ -43,8 +45,7 @@ public class NotificationPreferences extends PreferenceActivity implements
 
 		public boolean onPreferenceClick(Preference preference) {
 			activity.startActivityForResult(new Intent(activity,
-					SelectVibrationPattern.class),
-					ACTIVITY_CHOOSE_VP);
+					SelectVibrationPattern.class), ACTIVITY_CHOOSE_VP);
 			return true;
 		}
 	}
@@ -58,7 +59,13 @@ public class NotificationPreferences extends PreferenceActivity implements
 			if (resultCode == RESULT_CANCELED) {
 				// No pattern chosen (back button)
 			} else {
-				// TODO: Change vibration pattern preference
+				String pattern = (String) data.getExtras().get(
+						DatabaseManager.VP_KEY_PATTERN);
+				Log.d(TAG, "Pattern returned from SelectVibrationPattern: "
+						+ pattern);
+				PreferenceManager.getDefaultSharedPreferences(this).edit()
+						.putString(VIBRATION_PATTERN_PREFERENCE, pattern)
+						.commit();
 			}
 		default:
 			break;
@@ -69,16 +76,17 @@ public class NotificationPreferences extends PreferenceActivity implements
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.preferences);
-		
+
 		Preference colorPref = (Preference) findPreference(COLOR_PREFERENCE_KEY);
 		colorPref.setOnPreferenceClickListener(this);
-		
+
 		Preference testPref = (Preference) findPreference(TEST_PREFERENCE_KEY);
 		testPref
 				.setOnPreferenceClickListener(new TestNotificationListener(this));
-		
-		Preference vibrationPatternPref = (Preference) findPreference(VIBRATION_PATERN_PREFERENCE_KEY);
-		vibrationPatternPref.setOnPreferenceClickListener(new VibrationPatternListener(this));
+
+		Preference vibrationPatternPref = (Preference) findPreference(VIBRATION_PATTERN_PREFERENCE_KEY);
+		vibrationPatternPref
+				.setOnPreferenceClickListener(new VibrationPatternListener(this));
 	}
 
 	public void colorChanged(int color) {

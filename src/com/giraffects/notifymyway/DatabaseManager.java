@@ -128,4 +128,22 @@ public class DatabaseManager {
 
         return database.insert(VP_TABLE_NAME, null, initialValues);
     }
+	
+	/**
+     * Update the vibration pattern using the details provided. The VP to be updated is
+     * specified using the rowId, and it is altered to use the name and pattern
+     * values passed in
+     * 
+     * @param rowId id of vp to update
+     * @param name value to set vp name to
+     * @param pattern value to set vp pattern to
+     * @return true if the note was successfully updated, false otherwise
+     */
+    public boolean updateVibrationPattern(long rowId, String name, String pattern) {
+        ContentValues args = new ContentValues();
+        args.put(VP_KEY_NAME, name);
+        args.put(VP_KEY_PATTERN, pattern);
+        
+        return database.update(VP_TABLE_NAME, args, VP_KEY_ROWID + "=" + rowId, null) > 0;
+    }
 }

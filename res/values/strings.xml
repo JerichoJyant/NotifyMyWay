@@ -11,4 +11,5 @@ that app and NotifyMyWay. Please disable vibration in your default messaging app
 <string name="edit_pattern_dialog_pattern">Pattern: (See Help)</string>
 <string name="save_pattern_button">Save</string>
 <string name="cancel_pattern_button">Cancel</string>
+<drawable name="vp_list_item_pattern_color">#CCCCCC</drawable>
 </resources>
