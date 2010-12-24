@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MainMenu!</string>
-    <string name="app_name">NotifyMyWay</string>
-<string name="vibration_dupe_warning">If your default messaging app is set to vibrate when receiving text messages there will be an overlap between
-that app and NotifyMyWay. Please disable vibration in your default messaging app.</string>
-<string name="vibration_button">Fix Vibration Overlap</string>
-<string name="edit_preferences">Edit Preferences</string>
-
-<string name="edit_pattern_dialog_name">Pattern Name:</string>
-<string name="edit_pattern_dialog_pattern">Pattern: (See Help)</string>
-<string name="save_pattern_button">Save</string>
-<string name="cancel_pattern_button">Cancel</string>
-<drawable name="vp_list_item_pattern_color">#A1A1A1</drawable>
+	<string name="hello">Hello World, MainMenu!</string>
+	<string name="app_name">NotifyMyWay</string>
+	<string name="edit_preferences">Edit Preferences</string>
+	<string name="edit_pattern_dialog_name">Pattern Name:</string>
+	<string name="edit_pattern_dialog_pattern">Pattern: (See Help)</string>
+	<string name="save_pattern_button">Save</string>
+	<string name="cancel_pattern_button">Cancel</string>
+	<drawable name="vp_list_item_pattern_color">#A1A1A1</drawable>
+	<string name="welcome_text">Welcome to NotifyMyWay.\n
+		\nNotifyMyWay allows you to change how you\'re notified when you receive a Text
+		Message (SMS).
+	</string>
+	<string name="help_button">Help</string>
+	<string name="help_activity_text">
+	Thank you for installing NotifyMyWay.
+	\n\nNotifyMyWay allows you to change how your phone responds to receiving text messages.
+	This includes vibration and the notification LED included on some phones.
+	\n\n
+	</string>
 </resources>

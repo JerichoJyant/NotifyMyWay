@@ -14,7 +14,6 @@ public class MainMenu extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
 		// TODO: Put the following in an Application subclass
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -23,12 +22,18 @@ public class MainMenu extends Activity implements OnClickListener {
 		// Register the onClick listener with the implementation above
 		launchPreferences.setOnClickListener(this);
 
-		
+		Button help_button = (Button) findViewById(R.id.main_help_button);
+		help_button.setOnClickListener(this);
+
 	}
 
 	public void onClick(View v) {
 		// TODO: discriminate between events
-		startActivity(new Intent(this, NotificationPreferences.class));
+		if (v.getId() == R.id.edit_preferences) {
+			startActivity(new Intent(this, NotificationPreferences.class));
+		} else if (v.getId() == R.id.main_help_button) {
+			startActivity(new Intent(this, HelpActivity.class));
+		}
 	}
 
 }
