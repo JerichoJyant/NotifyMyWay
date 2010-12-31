@@ -49,9 +49,26 @@ public class DatabaseManager {
 			db.execSQL(DATABASE_CREATE);
 			//Load and execute default SQL
 			Log.d(TAG, "Running default sql");
-			String default_sql = context.getApplicationContext().getResources()
-					.getString(R.string.default_sql);
-			db.execSQL(default_sql); // Loads and executes SQL from XML
+			db.beginTransaction();
+			DatabaseManager.createVibrationPattern("Quarter Second Buzz", "0,250", db);
+			DatabaseManager.createVibrationPattern("Half Second Buzz", "0,500", db);
+			DatabaseManager.createVibrationPattern("One Second Buzz", "0,1000", db);
+			DatabaseManager.createVibrationPattern("Two Second Buzz", "0,2000", db);
+			DatabaseManager.createVibrationPattern("Three Second Buzz", "0,3000", db);
+			DatabaseManager.createVibrationPattern("Four Second Buzz", "0,4000", db);
+			DatabaseManager.createVibrationPattern("Triple Buzz", "0,250,100,250,100,250", db);
+			DatabaseManager.createVibrationPattern("Triple Buzz (shorter)", "0,150,50,150,50,150", db);
+			DatabaseManager.createVibrationPattern("Triple Buzz (shortest)", "0,75,25,75,25,75", db);
+			DatabaseManager.createVibrationPattern("5 Super Rapid Pulses", "0,50,50,50,50,50,50,50,50,50,50", db);
+			DatabaseManager.createVibrationPattern("10 Super Rapid Pulses", "0,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50", db);
+			DatabaseManager.createVibrationPattern("20 Super Rapid Pulses", "0,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50", db);
+			DatabaseManager.createVibrationPattern("5 Rapid Pulses", "0,100,100,100,100,100,100,100,100,100,100", db);
+			DatabaseManager.createVibrationPattern("10 Rapid Pulses", "0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100", db);
+			DatabaseManager.createVibrationPattern("20 Rapid Pulses", "0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100", db);
+			DatabaseManager.createVibrationPattern("Delayed One-Second-Buzz", "250,1000", db);
+			DatabaseManager.createVibrationPattern("RapTap Tap Slap", "0,200,200,200,200,500,250,1000", db);
+			db.setTransactionSuccessful();
+			db.endTransaction();
 		}
 
 		@Override
@@ -123,6 +140,14 @@ public class DatabaseManager {
 	}
 
 	public long createVibrationPattern(String name, String pattern) {
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(VP_KEY_NAME, name);
+		initialValues.put(VP_KEY_PATTERN, pattern);
+
+		return database.insert(VP_TABLE_NAME, null, initialValues);
+	}
+	
+	public static long createVibrationPattern(String name, String pattern, SQLiteDatabase database) {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(VP_KEY_NAME, name);
 		initialValues.put(VP_KEY_PATTERN, pattern);
