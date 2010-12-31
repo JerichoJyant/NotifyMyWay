@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.giraffects.notifymyway"
-      android:versionName="Pre-Release Beta 1" android:versionCode="3">
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-        <activity android:name=".MainMenu"
-                  android:label="@string/app_name" android:theme='@android:style/Theme.NoTitleBar'>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+	package="com.giraffects.notifymyway" android:versionName="1.0.0"
+	android:versionCode="1">
+	<application android:icon="@drawable/icon" android:label="@string/app_name"
+		android:debuggable="false">
+		<activity android:name=".MainMenu" android:label="@string/app_name"
+			android:theme='@android:style/Theme.NoTitleBar'>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
 
-    <receiver android:name="ReceiveSMS">
-<intent-filter><action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
-</intent-filter>
-</receiver>
-<activity android:name="NotificationPreferences"></activity>
+		<receiver android:name="ReceiveSMS">
+			<intent-filter>
+				<action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+			</intent-filter>
+		</receiver>
+		<activity android:name="NotificationPreferences"></activity>
 
-<activity android:name="SelectVibrationPattern" android:exported="false"></activity>
-<activity android:name="HelpActivity" android:theme='@android:style/Theme.NoTitleBar'></activity>
-</application>
-    <uses-sdk android:minSdkVersion="5" />
+		<activity android:name="SelectVibrationPattern"
+			android:exported="false"></activity>
+		<activity android:name="HelpActivity" android:theme='@android:style/Theme.NoTitleBar'></activity>
+	</application>
+	<uses-sdk android:minSdkVersion="5" />
 
 
-<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+	<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
 
-<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+	<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
 
-<uses-feature></uses-feature>
+	<uses-feature></uses-feature>
 
 </manifest> 
