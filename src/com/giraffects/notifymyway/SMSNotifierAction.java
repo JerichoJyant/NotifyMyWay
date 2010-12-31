@@ -5,10 +5,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 class SMSNotifierAction {
-	private static final String TAG = "NotifyMyWay";
 	Context context;
 
 	SMSNotifierAction(Context context) {
@@ -17,7 +15,7 @@ class SMSNotifierAction {
 
 	void notify_user() {
 		try {
-			Log.d(TAG, "Receiving SMS");
+			StaticHelper.d("Receiving SMS");
 
 			// ---get the SMS message passed in---
 			// Bundle bundle = intent.getExtras();
@@ -30,7 +28,7 @@ class SMSNotifierAction {
 
 			CharSequence tickerText = "Text Message Received";
 			long when = System.currentTimeMillis();
-			Log.d(TAG, "Creating Notification");
+			StaticHelper.d("Creating Notification");
 			Notification notif = new Notification(0, tickerText, when);
 			if (sp.getBoolean("vibration_on_preference", true)) {
 				// Choose which vibration pattern string to load
@@ -50,22 +48,21 @@ class SMSNotifierAction {
 
 				notif.vibrate = long_vibrate_array;
 			}
-			/* Taken out due to issues with LED remaining, will be back in future
-			// notif.ledARGB = 0xff00ffff;
-			notif.ledARGB = sp.getInt("led_color", 0);
-			notif.ledOnMS = Integer.decode(sp.getString(
-					"flash_on_duration_preference", "500"));
-			notif.ledOffMS = Integer.decode(sp.getString(
-					"flash_off_duration_preference", "500"));
-			if (sp.getBoolean("flash_led_preference", true)) {
-				notif.flags |= Notification.FLAG_SHOW_LIGHTS;
-			}
-			*/
-			Log.d(TAG, "Notifying");
+			/*
+			 * Taken out due to issues with LED remaining, will be back in
+			 * future // notif.ledARGB = 0xff00ffff; notif.ledARGB =
+			 * sp.getInt("led_color", 0); notif.ledOnMS =
+			 * Integer.decode(sp.getString( "flash_on_duration_preference",
+			 * "500")); notif.ledOffMS = Integer.decode(sp.getString(
+			 * "flash_off_duration_preference", "500")); if
+			 * (sp.getBoolean("flash_led_preference", true)) { notif.flags |=
+			 * Notification.FLAG_SHOW_LIGHTS; }
+			 */
+			StaticHelper.d("Notifying");
 			try {
 				nm.notify(1, notif);
 			} catch (Exception e) {
-				Log.e(TAG, "Error while notifying", e);
+				StaticHelper.e("Error while notifying", e);
 			}
 			/*
 			 * SmsMessage[] msgs = null; String str = ""; if (bundle != null) {
@@ -79,7 +76,7 @@ class SMSNotifierAction {
 			 * Toast.LENGTH_SHORT).show(); }
 			 */
 		} catch (Exception e) {
-			Log.e(TAG, "Generic Failure", e);
+			StaticHelper.e("Generic Failure", e);
 		}
 	}
 }

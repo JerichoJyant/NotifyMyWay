@@ -2,7 +2,6 @@ package com.giraffects.notifymyway;
 
 import android.app.Dialog;
 import android.database.Cursor;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,8 +13,8 @@ public class EditVibrationPatternDialog extends Dialog implements
 	public static final int TYPE_ADD = 1;
 	public static final int TYPE_EDIT = 2;
 	private int type;
-	private final String TAG = "NotifyMyWay";
-	private SelectVibrationPattern context; //Effectively a context, however additional methods needed
+	private SelectVibrationPattern context; // Effectively a context, however
+	// additional methods needed
 	private long id;
 
 	public EditVibrationPatternDialog(SelectVibrationPattern context, int type) {
@@ -36,7 +35,8 @@ public class EditVibrationPatternDialog extends Dialog implements
 		cancel_button.setOnClickListener(this);
 	}
 
-	public EditVibrationPatternDialog(SelectVibrationPattern context, int type, long id) {
+	public EditVibrationPatternDialog(SelectVibrationPattern context, int type,
+			long id) {
 		// Editing
 		super(context);
 		this.type = type;
@@ -83,25 +83,25 @@ public class EditVibrationPatternDialog extends Dialog implements
 			if (vp_pattern == "") {
 				// Pattern is blank
 				// Notify user and cancel operation
-				Toast toast = Toast
-						.makeText(
-								context,
-								"The the pattern can not be blank, please try again.",
-								Toast.LENGTH_SHORT);
+				Toast toast = Toast.makeText(context,
+						"The the pattern can not be blank, please try again.",
+						Toast.LENGTH_SHORT);
 				toast.show();
 				return;
 			}
 			DatabaseManager db_manager = new DatabaseManager(context).open();
 			if (type == TYPE_ADD) {
 
-				Log.d(TAG, "createVibrationPattern, name: " + vp_name
+				StaticHelper.d("createVibrationPattern, name: " + vp_name
 						+ ", pattern:" + vp_pattern);
 				long result = db_manager.createVibrationPattern(vp_name,
 						vp_pattern);
 				if (result == -1) {
-					Log.e(TAG,
-							"Could not insert new row into database with values "
-									+ vp_name + ", " + vp_pattern
+					StaticHelper
+							.e("Could not insert new row into database with values "
+									+ vp_name
+									+ ", "
+									+ vp_pattern
 									+ ". Contact developer");
 					CharSequence text = "Error inserting the new row into database";
 					int duration = Toast.LENGTH_LONG;
@@ -109,7 +109,7 @@ public class EditVibrationPatternDialog extends Dialog implements
 					Toast toast = Toast.makeText(context, text, duration);
 					toast.show();
 				} else {
-					Log.d(TAG, "Created database row id: " + result);
+					StaticHelper.d("Created database row id: " + result);
 				}
 				context.onChangeVibrationPatterns();
 				db_manager.close();
@@ -122,7 +122,7 @@ public class EditVibrationPatternDialog extends Dialog implements
 					context.onChangeVibrationPatterns();
 					db_manager.close();
 				} else {
-					Log.e(TAG, "Could not edit vibration pattern");
+					StaticHelper.e("Could not edit vibration pattern");
 					Toast toast = Toast
 							.makeText(
 									context,
@@ -134,7 +134,7 @@ public class EditVibrationPatternDialog extends Dialog implements
 				// onChangeVibrationPatterns();
 			}
 		} else if (v.getId() == R.id.cancel_pattern_button) {
-			Log.d(TAG, "Dialog Canceled");
+			StaticHelper.d("Dialog Canceled");
 			dismiss();
 		}
 	}

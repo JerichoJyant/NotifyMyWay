@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -19,7 +18,6 @@ public class SelectVibrationPattern extends Activity implements
 		OnItemClickListener, OnItemLongClickListener {
 	static final int DIALOG_EDIT_VP = 1;
 	static final int DIALOG_ADD_VP = 2;
-	private static final String TAG = "NotifyMyWay";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,7 @@ public class SelectVibrationPattern extends Activity implements
 	}
 
 	public Dialog onCreateDialog(int id) {
-		Log.d(TAG, "onCreateDialog called, id: " + id);
+		StaticHelper.d("onCreateDialog called, id: " + id);
 		switch (id) {
 		case (DIALOG_EDIT_VP): {
 			//
@@ -81,7 +79,7 @@ public class SelectVibrationPattern extends Activity implements
 
 	public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Log.d(TAG, "Item in list long clicked, id: " + id);
+		StaticHelper.d("Item in list long clicked, id: " + id);
 		Dialog edit_dialog = new EditVibrationPatternDialog(this,
 				EditVibrationPatternDialog.TYPE_EDIT, id);
 		edit_dialog.setOwnerActivity(this);
@@ -100,7 +98,7 @@ public class SelectVibrationPattern extends Activity implements
 
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Log.d(TAG, "Item in list clicked, id: " + id);
+		StaticHelper.d("Item in list clicked, id: " + id);
 		DatabaseManager db_manager = new DatabaseManager(this).open();
 		Cursor vp = db_manager.fetchVibrationPattern(id);
 		String vp_pattern = vp.getString(vp

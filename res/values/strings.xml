@@ -10,8 +10,7 @@
 	<drawable name="vp_list_item_pattern_color">#A1A1A1</drawable>
 	<string name="welcome_text">Welcome to NotifyMyWay.\n
 		\nNotifyMyWay allows you
-		to change how you\'re notified when you receive a Text
-		Message (SMS).
+		to change how you\'re notified when you receive a Text Message (SMS).
 	</string>
 	<string name="help_button">Help</string>
 	<string name="help_back_button">Back</string>
@@ -19,79 +18,44 @@
 		Thank you for installing NotifyMyWay.
 		\n\n
 		<b>Introduction</b>
-		\nNotifyMyWay allows you to
-		change how your phone responds to receiving
-		text
-		messages.
-		This includes
-		vibration and the notification LED included
-		on some phones.
+		\nNotifyMyWay allows you to change how your phone vibrates when
+		receiving text messages.
 		\n\n
 		<b>Eliminate Vibration Overlap</b>
 		\nTo use NotifyMyWay fully, you will need to deactivate vibration in
-		your current text messaging (SMS) application.
+		your current text messaging (SMS) application. In the standard Android
+		application you can find this setting at Menu->Messaging
+		Settings->Text messaging settings->Vibrate.
 		\n\n
 		<b>Choosing Your Vibration Pattern</b>
 		\nSelect \"Edit Preferences\" in the main menu. From here you may
-		toggle
-		vibration, select and edit
-		Vibration Patterns, and test your
-		current
-		vibration pattern.
+		toggle vibration, select and edit Vibration Patterns, and test your
+		current vibration pattern.
 
 		\n\nPress \"Select Vibration Pattern...\".
 		This takes you to the Vibration Pattern Manager. Click on a Vibration
 		Pattern to select it or press and hold to edit it. To add a new
 		Vibration Pattern press \"Add Pattern\" in the bottom left (see
-		\"Custom
-		Vibration Patterns\" below). Press \"Cancel\" to return
-		without
-		changing anything.
-		\n\nOnce you have selected a Vibration
-		Pattern by
-		pressing or clicking
-		it, you will return to the preferences
-		menu and
-		your new pattern will
-		be tested for you.
+		\"Custom Vibration Patterns\" below). Press \"Cancel\" to return
+		without changing anything. \n\nOnce you have selected a Vibration
+		Pattern by pressing or clicking it, you will return to the preferences
+		menu and your new pattern will be tested for you.
 		\n\n
 		<b>Custom Vibration Patterns</b>
 		\nIf you can\'t quite grasp this section, it\'s okay. Just use the
-		built
-		in patterns.
-		An easy to use Vibration Pattern editor is being
-		developed
-		and will come in a future update.
+		built in patterns. An easy to use Vibration Pattern editor is being
+		developed and will come in a future update.
 		\n\n
 		Here\'s Google\'s
-		explanation: \n
-		\"...The [Vibration Pattern] defines
-		the alternating
-		pattern for the
-		length of vibration off and on (in
-		milliseconds). The
-		first value is
-		how long to wait (off) before
-		beginning, the second value
-		is the length
-		of the first vibration, the
-		third is the next length off,
-		and so
-		on...\"\n\n
-		Vibration patterns are
-		a comma separated group of
-		number time
-		lengths. The numbers are
-		Milliseconds (1,000 milliseconds
-		= 1
-		second).
-		So a pattern that goes
-		immediately on, vibrates for a
-		half
-		second, waits
-		a half second, and
-		then vibrates for a second would
-		be
-		\"0,500,500,1000\".
+		explanation: \n \"...The [Vibration Pattern] defines the alternating
+		pattern for the length of vibration off and on (in milliseconds). The
+		first value is how long to wait (off) before beginning, the second
+		value is the length of the first vibration, the third is the next
+		length off, and so on...\"\n\n Vibration patterns are a comma
+		separated group of number time lengths. The numbers are Milliseconds
+		(1,000 milliseconds = 1 second). So a pattern that goes immediately
+		on,
+		vibrates for a half second, waits a half second, and then vibrates
+		for a second would be \"0,500,500,1000\".
 	</string>
 </resources>
