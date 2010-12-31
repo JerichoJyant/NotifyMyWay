@@ -1,8 +1,9 @@
 package com.giraffects.notifymyway;
 
-
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseManager {
-	private static final String TAG = "NMW DBManager";
+	private static final String TAG = "NotifyMyWay";
 	private Context context;
 	private DatabaseHelper database_helper;
 	private SQLiteDatabase database;
@@ -20,27 +21,25 @@ public class DatabaseManager {
 	public static final String VP_KEY_NAME = "name";
 	public static final String VP_KEY_PATTERN = "pattern";
 	public static final String VP_KEY_ROWID = "_id";
-	
+
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		// Upgrade when changing schema
 		private static final int DATABASE_VERSION = 2;
-		
 		// Database name
 		private static final String DATABASE_NAME = "nmw_data";
-		
-		
+
 		private static final String VP_TABLE_CREATE = "CREATE TABLE "
 				+ VP_TABLE_NAME + " (" + VP_KEY_ROWID
 				+ " integer primary key autoincrement, " + VP_KEY_NAME
 				+ " TEXT, " + VP_KEY_PATTERN + " TEXT" + ");";
 
 		private static final String DATABASE_CREATE = VP_TABLE_CREATE; // TODO:
-																		// Add
-																		// more
-																		// tables
+
+		private static Context context;
 
 		DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+			DatabaseHelper.context = context;
 		}
 
 		@Override
@@ -48,7 +47,11 @@ public class DatabaseManager {
 			// Run sql to create database
 			Log.d(TAG, "Creating database");
 			db.execSQL(DATABASE_CREATE);
-			// TODO: Run SQL to pre-populate table with patterns
+			//Load and execute default SQL
+			Log.d(TAG, "Running default sql");
+			String default_sql = context.getApplicationContext().getResources()
+					.getString(R.string.default_sql);
+			db.execSQL(default_sql); // Loads and executes SQL from XML
 		}
 
 		@Override
@@ -91,9 +94,8 @@ public class DatabaseManager {
 	 * @return Cursor over all notes
 	 */
 	public Cursor fetchAllVibrationPatterns() {
-		return database.query(VP_TABLE_NAME, new String[] {
-				VP_KEY_ROWID, VP_KEY_NAME,
-				VP_KEY_PATTERN }, null, null, null, null, null);
+		return database.query(VP_TABLE_NAME, new String[] { VP_KEY_ROWID,
+				VP_KEY_NAME, VP_KEY_PATTERN }, null, null, null, null, null);
 	}
 
 	/**
@@ -109,10 +111,9 @@ public class DatabaseManager {
 
 		Cursor mCursor =
 
-		database.query(true, VP_TABLE_NAME, new String[] {
-				VP_KEY_ROWID, VP_KEY_NAME,
-				VP_KEY_PATTERN }, VP_KEY_ROWID
-				+ "=" + rowId, null, null, null, null, null);
+		database.query(true, VP_TABLE_NAME, new String[] { VP_KEY_ROWID,
+				VP_KEY_NAME, VP_KEY_PATTERN }, VP_KEY_ROWID + "=" + rowId,
+				null, null, null, null, null);
 
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -120,30 +121,35 @@ public class DatabaseManager {
 		return mCursor;
 
 	}
-	
-	public long createVibrationPattern(String name, String pattern) {
-        ContentValues initialValues = new ContentValues();
-        initialValues.put(VP_KEY_NAME, name);
-        initialValues.put(VP_KEY_PATTERN, pattern);
 
-        return database.insert(VP_TABLE_NAME, null, initialValues);
-    }
-	
+	public long createVibrationPattern(String name, String pattern) {
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(VP_KEY_NAME, name);
+		initialValues.put(VP_KEY_PATTERN, pattern);
+
+		return database.insert(VP_TABLE_NAME, null, initialValues);
+	}
+
 	/**
-     * Update the vibration pattern using the details provided. The VP to be updated is
-     * specified using the rowId, and it is altered to use the name and pattern
-     * values passed in
-     * 
-     * @param rowId id of vp to update
-     * @param name value to set vp name to
-     * @param pattern value to set vp pattern to
-     * @return true if the note was successfully updated, false otherwise
-     */
-    public boolean updateVibrationPattern(long rowId, String name, String pattern) {
-        ContentValues args = new ContentValues();
-        args.put(VP_KEY_NAME, name);
-        args.put(VP_KEY_PATTERN, pattern);
-        
-        return database.update(VP_TABLE_NAME, args, VP_KEY_ROWID + "=" + rowId, null) > 0;
-    }
+	 * Update the vibration pattern using the details provided. The VP to be
+	 * updated is specified using the rowId, and it is altered to use the name
+	 * and pattern values passed in
+	 * 
+	 * @param rowId
+	 *            id of vp to update
+	 * @param name
+	 *            value to set vp name to
+	 * @param pattern
+	 *            value to set vp pattern to
+	 * @return true if the note was successfully updated, false otherwise
+	 */
+	public boolean updateVibrationPattern(long rowId, String name,
+			String pattern) {
+		ContentValues args = new ContentValues();
+		args.put(VP_KEY_NAME, name);
+		args.put(VP_KEY_PATTERN, pattern);
+
+		return database.update(VP_TABLE_NAME, args, VP_KEY_ROWID + "=" + rowId,
+				null) > 0;
+	}
 }

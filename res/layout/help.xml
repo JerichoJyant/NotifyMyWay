@@ -2,15 +2,31 @@
 <RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  >
   <ImageView android:id="@+id/banner" android:layout_height="wrap_content"
 		android:src="@drawable/banner"
 		android:layout_width="wrap_content" android:padding="4dp"
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true" />
+	<ScrollView
+	android:paddingTop="10dp"
+  	android:paddingBottom="50dp"
+  	android:layout_height="fill_parent"
+  	android:layout_width="fill_parent"
+  	android:layout_below="@id/banner"
+	>
   <TextView
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
   	android:text="@string/help_activity_text"
+  	android:id="@+id/help_activity_text"
+  	
+  	
+  	android:textSize="14dp"
   />
+  </ScrollView>
+  <Button android:layout_height="50dp" android:id="@+id/help_back_button"
+		android:text="@string/help_back_button" android:layout_width="fill_parent"
+		android:layout_alignParentBottom="true"></Button>
 </RelativeLayout>

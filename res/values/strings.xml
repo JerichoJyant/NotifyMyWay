@@ -9,14 +9,61 @@
 	<string name="cancel_pattern_button">Cancel</string>
 	<drawable name="vp_list_item_pattern_color">#A1A1A1</drawable>
 	<string name="welcome_text">Welcome to NotifyMyWay.\n
-		\nNotifyMyWay allows you to change how you\'re notified when you receive a Text
+		\nNotifyMyWay allows you
+		to change how you\'re notified when you receive a Text
 		Message (SMS).
 	</string>
 	<string name="help_button">Help</string>
+	<string name="help_back_button">Back</string>
 	<string name="help_activity_text">
-	Thank you for installing NotifyMyWay.
-	\n\nNotifyMyWay allows you to change how your phone responds to receiving text messages.
-	This includes vibration and the notification LED included on some phones.
-	\n\n
+		Thank you for installing NotifyMyWay.
+		\n\n
+		<b>Introduction</b>
+		\nNotifyMyWay allows you to
+		change how your phone responds to receiving
+		text
+		messages.
+		This includes
+		vibration and the notification LED included
+		on some phones.
+		\n\n
+		<b>Custom Vibration Patterns</b>
+		\nIf you can\'t quite grasp this section, it\'s okay. Just use the
+		built
+		in patterns.
+		An easy to use Vibration Pattern editor is being
+		developed
+		and will come in a future update.
+		\n\n
+		Here\'s Google\'s
+		explanation: \n
+		\"...The [Vibration Pattern] defines
+		the alternating
+		pattern for the
+		length of vibration off and on (in
+		milliseconds). The
+		first value is
+		how long to wait (off) before
+		beginning, the second value
+		is the length
+		of the first vibration, the
+		third is the next length off,
+		and so
+		on...\"\n\n
+		Vibration patterns are
+		a comma separated group of
+		number time
+		lengths. The numbers are
+		Milliseconds (1,000 milliseconds
+		= 1
+		second).
+		So a pattern that goes
+		immediately on, vibrates for a
+		half
+		second, waits
+		a half second, and
+		then vibrates for a second would
+		be
+		\"0,500,500,1000\".
 	</string>
 </resources>
