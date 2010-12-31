@@ -85,10 +85,10 @@ public class NotificationPreferences extends PreferenceActivity implements
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.preferences);
-
+		/* Taken out due to LED issues
 		Preference colorPref = (Preference) findPreference(COLOR_PREFERENCE_KEY);
 		colorPref.setOnPreferenceClickListener(this);
-
+		*/
 		Preference testPref = (Preference) findPreference(TEST_PREFERENCE_KEY);
 		testPref
 				.setOnPreferenceClickListener(new TestNotificationListener(this));

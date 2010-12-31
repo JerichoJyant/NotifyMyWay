@@ -50,6 +50,7 @@ class SMSNotifierAction {
 
 				notif.vibrate = long_vibrate_array;
 			}
+			/* Taken out due to issues with LED remaining, will be back in future
 			// notif.ledARGB = 0xff00ffff;
 			notif.ledARGB = sp.getInt("led_color", 0);
 			notif.ledOnMS = Integer.decode(sp.getString(
@@ -59,6 +60,7 @@ class SMSNotifierAction {
 			if (sp.getBoolean("flash_led_preference", true)) {
 				notif.flags |= Notification.FLAG_SHOW_LIGHTS;
 			}
+			*/
 			Log.d(TAG, "Notifying");
 			try {
 				nm.notify(1, notif);
