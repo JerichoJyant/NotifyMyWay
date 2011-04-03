@@ -29,7 +29,7 @@ public class NotificationPreferences extends PreferenceActivity implements
 		}
 
 		public boolean onPreferenceClick(Preference preference) {
-			SMSNotifierAction action = new SMSNotifierAction(context);
+			SMSNotifierAction action = new SMSNotifierAction(context, null);
 			action.notify_user();
 			return true;
 		}
@@ -68,7 +68,7 @@ public class NotificationPreferences extends PreferenceActivity implements
 				Toast toast = Toast.makeText(this,
 						"Vibration Pattern changed, now testing it for you",
 						Toast.LENGTH_SHORT);
-				SMSNotifierAction action = new SMSNotifierAction(this);
+				SMSNotifierAction action = new SMSNotifierAction(this, null);
 				action.notify_user();
 				toast.show();
 			}
